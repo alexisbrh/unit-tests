@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Tests;
+namespace App\Http\Controllers\Test;
 
 use App\Http\Controllers\Controller;
 
@@ -15,6 +15,6 @@ class TestsController extends Controller
     public function index() {
 
         $result = 'Hello world';
-        return view('tests', ['result' => $result]);
+        return view('Test.tests', ['result' => $result]);
     }
 }
