@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route:: get('/tests', 'Test\TestsController@index')->name('tests');
+Route:: post('/tests-submit', 'Test\TestsController@submit')->name('tests-submit');
