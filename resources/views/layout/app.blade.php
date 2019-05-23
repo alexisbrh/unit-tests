@@ -5,6 +5,14 @@
         <link rel="stylesheet" href="{{ url('css/app.css') }}">
     </head>
     <body>
+    <nav class="navbar navbar-light bg-primary">
+        <a class="navbar-brand text-white" href="#">Tests</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="#">Accueil</a>
+            </li>
+        </ul>
+    </nav>
         <div class="container">
             @yield('content')
         </div>

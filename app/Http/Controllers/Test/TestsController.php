@@ -25,6 +25,8 @@ class TestsController extends Controller
 
     public function calculateSomme($query) {
 
+        dd($_POST);
+
         $results = array();
         try {
             $query = trim($query);
@@ -34,13 +36,21 @@ class TestsController extends Controller
             }
 
             foreach ($rolls as $roll) {
-                if (strlen($roll) != 3 || $roll[1] != 'd') {
-                    throw new \Exception('Format XdY non respecté pour un des lancés.');
-                } else if (!is_numeric($roll[0]) || !is_numeric($roll[2])) {
-                    throw new \Exception('Le nombre de dés ou le nombre de faces n\'est pas de type numérique.');
+
+                if (strpos($roll, 'd') === false) {
+                    throw new \Exception('Le format d\'un des lancés n\'est pas du type XdY.');
                 }
 
                 $rollTemp = explode('d' , $roll);
+                if (!is_numeric($rollTemp[0]) || !is_numeric($rollTemp[1])) {
+                    throw new \Exception('Le nombre de dés ou le nombre de faces n\'est pas de type numérique.');
+                } else if ($rollTemp[0] <= 0 || $rollTemp[0] > 100) {
+                    throw new \Exception('Le nombre de dés doit être compris entre 1 et 100.');
+                } else if ($rollTemp[1] < 2 || $rollTemp[1] > 100) {
+                    throw new \Exception('Le nombre de faces doit être compris entre 2 et 100.');
+                }
+
+
                 $number_dice = (int) $rollTemp[0];
                 $number_faces = (int) $rollTemp[1];
 

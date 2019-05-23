@@ -1,7 +1,12 @@
-.page_tests_content {
+.card {
   margin-top: 50px;
 }
 
 .card-results {
   text-align: center;
+
+  ul li {
+    width: 50%;
+    text-align: start;
+  }
 }
