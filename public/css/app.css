@@ -10666,12 +10666,23 @@ a.text-dark:focus {
   margin-top: 50px;
 }
 
-.card-results {
-  text-align: center;
-}
-
 .card-results ul li {
   width: 50%;
   text-align: start;
+}
+
+.card-results .card-title {
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  padding-bottom: 12px;
+}
+
+.navbar-brand {
+  line-height: 30px;
+}
+
+.nav-link {
+  line-height: 30px;
+  padding: 0.32rem 0 0.32rem 0;
 }
 

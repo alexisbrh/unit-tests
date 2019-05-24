@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Test;
 
 use App\Http\Controllers\Controller;
@@ -19,13 +18,22 @@ class TestsController extends Controller
 
     public function submit() {
 
-        $results = $this->calculateSomme($_POST['rolls']);
-        return redirect('tests')->with('results', $results);
+        $data = $this->calculateSomme($_POST['rolls']);
+        $sessionData = [
+            'data' => $data,
+            'rolls' => $_POST['rolls']
+        ];
+        if (isset($_POST['sum'])) {
+            foreach ($data as $roll => $value) {
+                $sum[] = $value['sum'];
+            }
+            $sessionData['sum'] = array_sum($sum);
+        }
+
+        return redirect('tests')->with($sessionData);
     }
 
     public function calculateSomme($query) {
-
-        dd($_POST);
 
         $results = array();
         try {
@@ -50,15 +58,18 @@ class TestsController extends Controller
                     throw new \Exception('Le nombre de faces doit être compris entre 2 et 100.');
                 }
 
-
                 $number_dice = (int) $rollTemp[0];
                 $number_faces = (int) $rollTemp[1];
 
-                $somme = 0;
-                for($i = 0; $i < $number_dice; $i++) {
-                    $somme += rand(2, $number_faces);
+                $sum = 0;
+                for($i = 1; $i <= $number_dice; $i++) {
+                    $randNumber = rand(2, $number_faces);
+                    $sum += $randNumber;
+                    if(isset($_POST['sp'])) {
+                        $results[$roll]['sp'][$i] = $randNumber;
+                    }
                 }
-                $results[$roll] = $somme;
+                $results[$roll]['sum'] = $sum;
             }
 
         } catch (\Exception $e) {

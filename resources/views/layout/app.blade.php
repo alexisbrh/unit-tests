@@ -6,10 +6,10 @@
     </head>
     <body>
     <nav class="navbar navbar-light bg-primary">
-        <a class="navbar-brand text-white" href="#">Tests</a>
+        <a class="navbar-brand text-white" href="/">Accueil</a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-white" href="#">Accueil</a>
+                <a class="nav-link text-white" href="{{ route('tests') }}">TP</a>
             </li>
         </ul>
     </nav>
